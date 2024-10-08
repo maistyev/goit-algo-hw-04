@@ -51,12 +51,12 @@ def merge(left, right):
 
     return result  # Повертаємо злитий масив
 
-
-def main():
-    arr_1 = [randint(0, 1000) for _ in range(100)]
-    print(f"Given array is {arr_1}")
+def time_comparison(num_of_elements):
+    arr_1 = [randint(0, 1000) for _ in range(num_of_elements)]
     arr_2 = arr_1.copy()
     arr_3 = arr_1.copy()
+    print(f"Sorting time comparison for {num_of_elements} elements")
+    print(f"Given array is {arr_1}")
 
     insertion_sort_time = timeit.timeit(f"insertion_sort({arr_1})", setup="from __main__ import insertion_sort")
     merger_sort_time = timeit.timeit(f"merge_sort({arr_2})", setup="from __main__ import merge_sort, merge")
@@ -67,6 +67,14 @@ def main():
     print(f"Timsort time: {timsort_sort_time}")
     print(f"timSort is {insertion_sort_time / timsort_sort_time} times faster than insertion sort")
     print(f"timSort is {merger_sort_time / timsort_sort_time} times faster than merge sort")
+
+
+def main():
+    time_comparison(10)
+    time_comparison(50)
+    time_comparison(100)
+    time_comparison(500)
+    time_comparison(1000)
     
 if __name__ == "__main__":
     main()
